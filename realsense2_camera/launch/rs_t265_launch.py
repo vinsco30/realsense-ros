@@ -34,8 +34,10 @@ import sys
 import pathlib
 sys.path.append(str(pathlib.Path(__file__).parent.absolute()))
 import rs_launch
+from launch_ros.actions import Node
 
-local_parameters = [{'name': 'device_type', 'default': 't265', 'description': 'choose device by type'},
+
+local_parameters = [{'name': 'camera_name', 'default': 't265', 'description': 'choose device by type'},
                     {'name': 'enable_pose', 'default': 'true', 'description': 'enable pose stream'},
                     {'name': 'enable_fisheye1',              'default': 'true', 'description': 'enable fisheye1 stream'},
                     {'name': 'enable_fisheye2',              'default': 'true', 'description': 'enable fisheye2 stream'},
@@ -59,4 +61,20 @@ def generate_launch_description():
             PythonLaunchDescriptionSource([ThisLaunchFileDir(), '/rs_launch.py']),
             launch_arguments=rs_launch.set_configurable_parameters(local_parameters).items(),
         ),
+            Node(
+            package="tf2_ros",
+            executable="static_transform_publisher",
+            arguments=["0", "0", "0", "0", "0", "0", "t265_pose_frame", "t265_link"],
+            output="screen",
+        ),
     ])
+
+# def generate_launch_description():
+#     return launch.LaunchDescription([
+#         Node(
+#             package="tf2_ros",
+#             executable="static_transform_publisher",
+#             arguments=["0", "0", "0", "0", "0", "0", "t265_pose_frame", "t265_link"],
+#             output="screen",
+#         ),
+#     ])
