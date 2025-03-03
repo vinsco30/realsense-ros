@@ -37,20 +37,22 @@ import rs_launch
 from launch_ros.actions import Node
 
 
-local_parameters = [{'name': 'camera_name', 'default': 't265', 'description': 'choose device by type'},
-                    {'name': 'enable_pose', 'default': 'true', 'description': 'enable pose stream'},
+local_parameters = [{'name': 'camera_name',                  'default': 't265', 'description': 'choose device by type'},
+                    {'name': 'enable_pose',                  'default': 'true', 'description': 'enable pose stream'},
                     {'name': 'enable_fisheye1',              'default': 'true', 'description': 'enable fisheye1 stream'},
                     {'name': 'enable_fisheye2',              'default': 'true', 'description': 'enable fisheye2 stream'},
                     {'name': 'enable_gyro',                   'default': 'true', 'description': 'enable gyro stream'},
                     {'name': 'enable_accel',                  'default': 'true', 'description': 'enable accel stream'},
-                    {'name': 'united_imu_method',             'default': 'linear_interpolation', 'description': 'method to unite accel and gyro'},
-                    {'name': 'enable_qos',                    'default': 'true', 'description': 'enable qos settings for all streams'},
-                    {'name': 'fisheye1_qos',                  'default': 'SENSOR_DATA', 'description': 'fisheye1 stream qos setting'},
-                    {'name': 'fisheye2_qos',                  'default': 'SENSOR_DATA', 'description': 'fisheye2 stream qos setting'},
-                    {'name': 'gyro_qos',                      'default': 'SENSOR_DATA', 'description': 'gyro stream qos setting'},
-                    {'name': 'accel_qos',                     'default': 'SENSOR_DATA', 'description': 'accel stream qos setting'},
-                    {'name': 'pose_qos',                      'default': 'SENSOR_DATA', 'description': 'pose stream qos setting'},
-                    {'name': 'imu_qos',                       'default': 'SENSOR_DATA', 'description': 'imu stream qos setting'},
+                    {'name': 'unite_imu_method',             'default': 'linear_interpolation', 'description': 'method to unite accel and gyro'},
+                    
+                    ## WARN: QOS parameters setup is not supported in this launchfile --> modify the main launchfile (rs_launch.py) to include qos parameters
+                    # {'name': 'pose_qos',                      'default': 'SENSOR_DATA', 'description': 'pose stream qos setting'},
+                    # {'name': 'fisheye1_qos',                  'default': 'SENSOR_DATA', 'description': 'fisheye1 stream qos setting'},
+                    # {'name': 'fisheye2_qos',                  'default': 'SENSOR_DATA', 'description': 'fisheye2 stream qos setting'},
+                    # {'name': 'gyro_qos',                      'default': 'SENSOR_DATA', 'description': 'gyro stream qos setting'},
+                    # {'name': 'accel_qos',                     'default': 'SENSOR_DATA', 'description': 'accel stream qos setting'},
+                    # {'name': 'pose_qos',                      'default': 'SENSOR_DATA', 'description': 'pose stream qos setting'},
+                    # {'name': 'imu_qos',                       'default': 'SENSOR_DATA', 'description': 'imu stream qos setting'},
                    ]
 
 def generate_launch_description():

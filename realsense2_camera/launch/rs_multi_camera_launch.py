@@ -69,6 +69,11 @@ def generate_launch_description():
         launch_ros.actions.Node(
             package = "tf2_ros",
             executable = "static_transform_publisher",
-            arguments = ["0", "0", "0", "0", "0", "0", "camera1_link", "camera2_link"]
+            arguments=["0", "0", "0", "0", "0", "0", "T265_pose_frame", "T265_link"]
+        ),
+        launch_ros.actions.Node(
+            package = "tf2_ros",
+            executable = "static_transform_publisher",
+            arguments = ["0", "0", "-0.03", "0", "0", "0", "T265_link", "D400_link"]
         ),
     ])

@@ -26,8 +26,14 @@ local_parameters = [{'name': 'camera_name1', 'default': 'D400', 'description': '
                     {'name': 'device_type1', 'default': 'd4.', 'description': 'choose device by type'},
                     {'name': 'camera_name2', 'default': 'T265', 'description': 'camera unique name'},
                     {'name': 'device_type2', 'default': 't265', 'description': 'choose device by type'},
-                    {'name': 'enable_fisheye12', 'default': 'false', 'description': 'topic for T265 wheel odometry'},
-                    {'name': 'enable_fisheye22', 'default': 'false', 'description': 'topic for T265 wheel odometry'},
+
+                    #Params T265
+                    {'name': 'enable_pose2',                  'default': 'true', 'description': 'enable pose stream'},
+                    #Params D400
+                    {'name': 'enable_color1', 'default': 'true', 'description': 'enable color stream'},
+                    {'name': 'enable_depth1', 'default': 'true', 'description': 'enable depth stream'},
+                    {'name': 'align_depth1', 'default': 'true', 'description': 'align depth to color stream'},
+
                    ]
 
 def generate_launch_description():
