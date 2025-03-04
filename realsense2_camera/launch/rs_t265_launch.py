@@ -38,7 +38,9 @@ from launch_ros.actions import Node
 
 
 local_parameters = [{'name': 'camera_name',                  'default': 't265', 'description': 'choose device by type'},
+                    {'name': 'device_type',                 'default': 't265', 'description': 'choose device by type'}, #It's important to define the device type!
                     {'name': 'enable_pose',                  'default': 'true', 'description': 'enable pose stream'},
+                    {'name': 'enable_fisheye',               'default': 'false', 'description': 'enable fisheye stream'},
                     {'name': 'enable_fisheye1',              'default': 'true', 'description': 'enable fisheye1 stream'},
                     {'name': 'enable_fisheye2',              'default': 'true', 'description': 'enable fisheye2 stream'},
                     {'name': 'enable_gyro',                   'default': 'true', 'description': 'enable gyro stream'},
@@ -46,13 +48,7 @@ local_parameters = [{'name': 'camera_name',                  'default': 't265', 
                     {'name': 'unite_imu_method',             'default': 'linear_interpolation', 'description': 'method to unite accel and gyro'},
                     
                     ## WARN: QOS parameters setup is not supported in this launchfile --> modify the main launchfile (rs_launch.py) to include qos parameters
-                    # {'name': 'pose_qos',                      'default': 'SENSOR_DATA', 'description': 'pose stream qos setting'},
-                    # {'name': 'fisheye1_qos',                  'default': 'SENSOR_DATA', 'description': 'fisheye1 stream qos setting'},
-                    # {'name': 'fisheye2_qos',                  'default': 'SENSOR_DATA', 'description': 'fisheye2 stream qos setting'},
-                    # {'name': 'gyro_qos',                      'default': 'SENSOR_DATA', 'description': 'gyro stream qos setting'},
-                    # {'name': 'accel_qos',                     'default': 'SENSOR_DATA', 'description': 'accel stream qos setting'},
-                    # {'name': 'pose_qos',                      'default': 'SENSOR_DATA', 'description': 'pose stream qos setting'},
-                    # {'name': 'imu_qos',                       'default': 'SENSOR_DATA', 'description': 'imu stream qos setting'},
+
                    ]
 
 def generate_launch_description():
@@ -63,12 +59,12 @@ def generate_launch_description():
             PythonLaunchDescriptionSource([ThisLaunchFileDir(), '/rs_launch.py']),
             launch_arguments=rs_launch.set_configurable_parameters(local_parameters).items(),
         ),
-            Node(
-            package="tf2_ros",
-            executable="static_transform_publisher",
-            arguments=["0", "0", "0", "0", "0", "0", "t265_pose_frame", "t265_link"],
-            output="screen",
-        ),
+        #     Node(
+        #     package="tf2_ros",
+        #     executable="static_transform_publisher",
+        #     arguments=["0", "0", "0", "0", "0", "0", "t265_pose_frame", "t265_link"],
+        #     output="screen",
+        # ),
     ])
 
 # def generate_launch_description():
