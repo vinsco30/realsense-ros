@@ -65,4 +65,20 @@ def generate_launch_description():
             PythonLaunchDescriptionSource([ThisLaunchFileDir(), '/rs_launch.py']),
             launch_arguments=set_configurable_parameters(params2).items(),
         ),
+        launch_ros.actions.Node(
+            package = "tf2_ros",
+            executable = "static_transform_publisher",
+            arguments=["0", "0", "0", "0", "0", "0", "T265_pose_frame", "T265_link"]
+        ),
+        launch_ros.actions.Node(
+            package = "tf2_ros",
+            executable = "static_transform_publisher",
+            arguments = ["-0.19", "0", "0.07", "0", "0", "0", "T265_link", "D400_link"]
+        ),
+        launch_ros.actions.Node(
+            package = "tf2_ros",
+            executable = "static_transform_publisher",
+            arguments = ["-0.065", "0", "-0.02", "0", "0", "0", "D400_link", "base_link"]
+        ),
+    ])
     ])
